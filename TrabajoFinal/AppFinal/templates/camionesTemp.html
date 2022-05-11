@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% load static %}
+{% block ContenidoQueCambia %}
+<body>
+    <div class="container">
+        <table class="table table-bordered text-center">
+            <thead class="bg-primary text light">
+                <tr>
+                    <h1><center>Camiones</center></h1>
+                    <td>    ID  </td>
+                    <td>    PATENTE  </td>
+                    <td>    MARCA    </td> 
+                    <td>    COLOR   </td>
+                    <td>     TIPO DE CARGA  </td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for cam in listacam %}
+                <tr>
+                    <td>    {{cam.id}}    </td>
+                    <td>    {{cam.Patente}}    </td>
+                    <td>    {{cam.Marca}}  </td>
+                    <td>    {{cam.Color}}  </td>
+                    <td>    {{cam.TipoCarga}}    </td>
+                    <td>
+                        <a href="{% url 'camionesdel' cam.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+        <form action="{% url 'agregarCamion' %}" method="POST" class="form-group mt-5 col-6" center>
+            {% csrf_token %}
+            <h2><Center>Agregar Camión</Center></h2>
+            <input type="text" name="Patente" class="form-control mb-2" placeholder="ingrese Patente">
+            <input type="text" name="Marca" class="form-control mb-2" placeholder="ingrese Marca">
+            <input type="text" name="Color" class="form-control mb-2" placeholder="ingrese Color">
+            <input type="text" name="TipoCarga" class="form-control mb-2" placeholder="ingrese Carga">
+            <button class="btn btn-success col-12" type="submit">Guardar</button>
+
+        </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+{% load static %}
+{% block ContenidoQueCambia %}
+<body>
+    <div class="container">
+        <table class="table table-bordered text-center">
+            <thead class="bg-primary text light">
+                <tr>
+                    <h1><center>Empleados</center></h1>
+                    <td>    ID  </td>
+                    <td>    DOCUMENTO  </td>
+                    <td>    NOMBRE    </td> 
+                    <td>    APELLIDO   </td>
+                    <td>    TELEFONO  </td>
+                    <td>    CONTACTO  </td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for emp in listaemp %}
+                <tr>
+                    <td>    {{emp.id}}    </td>
+                    <td>    {{emp.Documento}}    </td>
+                    <td>    {{emp.Nombre}}  </td>
+                    <td>    {{emp.Apellido}}  </td>
+                    <td>    {{emp.Telefono}}    </td>
+                    <td>    {{emp.Contacto}}    </td>
+                    <td>
+                        <a href="{% url 'empleadosdel' emp.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+        <form action="{% url 'agregarEmpleado' %}" method="POST" class="form-group mt-5 col-6" center>
+            {% csrf_token %}
+            <h2><Center>Agregar Empleado</Center></h2>
+            <input type="number" name="Documento" class="form-control mb-2" placeholder="ingrese Documento">
+            <input type="text" name="Nombre" class="form-control mb-2" placeholder="ingrese Nombre">
+            <input type="text" name="Apellido" class="form-control mb-2" placeholder="ingrese Apellido">
+            <input type="number" name="Telefono" class="form-control mb-2" placeholder="ingrese Telefono">
+            <input type="email" name="Contacto" class="form-control mb-2" placeholder="ingrese Contacto">
+            <button class="btn btn-success col-12" type="submit">Guardar</button>
+
+        </form>
+    </div>
+</body>
+{% endblock %}

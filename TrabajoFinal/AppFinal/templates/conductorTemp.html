@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+{% load static %}
+{% block ContenidoQueCambia %}
+<body>
+    <div class="container">
+        <table class="table table-bordered text-center">
+            <thead class="bg-primary text light">
+                <tr>
+                    <h1><center>Conductores</center></h1>
+                    <td>    ID  </td>
+                    <td>    DOCUMENTO  </td>
+                    <td>    NOMBRE    </td> 
+                    <td>    APELLIDO   </td>
+                    <td>    TELEFONO  </td>
+                    <td>    CONTACTO  </td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for con in listacon %}
+                <tr>
+                    <td>    {{con.id}}    </td>
+                    <td>    {{con.Documento}}    </td>
+                    <td>    {{con.Nombre}}  </td>
+                    <td>    {{con.Apellido}}  </td>
+                    <td>    {{con.Telefono}}    </td>
+                    <td>    {{con.Contacto}}    </td>
+                    <td>
+                        <a href="{% url 'conductoresdel' con.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+        <form action="{% url 'agregarConductor' %}" method="POST" class="form-group mt-5 col-6" center>
+            {% csrf_token %}
+            <h2><Center>Agregar Conductor</Center></h2>
+            <input type="number" name="Documento" class="form-control mb-2" placeholder="ingrese Documento">
+            <input type="text" name="Nombre" class="form-control mb-2" placeholder="ingrese Nombre">
+            <input type="text" name="Apellido" class="form-control mb-2" placeholder="ingrese Apellido">
+            <input type="number" name="Telefono" class="form-control mb-2" placeholder="ingrese Telefono">
+            <input type="email" name="Contacto" class="form-control mb-2" placeholder="ingrese Contacto">
+            <button class="btn btn-success col-12" type="submit">Guardar</button>
+
+        </form>
+    </div>
+</body>
+{% endblock %}

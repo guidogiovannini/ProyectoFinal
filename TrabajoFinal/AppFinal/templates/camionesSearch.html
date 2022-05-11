@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% load static %}
+{% block ContenidoQueCambia %}
+<form action="{% url 'buscarCamion' %}" method="GET">
+    <input type="text" placeholder="Patente" name="Patente" id="Patente">
+    <input type="submit" value="Buscar">
+
+</form>
+{% endblock %}
+{% block titulo %}
+
+    <h1 >BUSCANDO CAMIONES</h1>
+
+{% endblock %}
